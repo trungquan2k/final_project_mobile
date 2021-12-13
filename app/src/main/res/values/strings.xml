@@ -14,5 +14,6 @@
     <string name="error_invalid_credentials">The E-Mail or password is incorrect</string>
     <string name="success_registration">Successfully registered new user</string>
     <string name="success_login">Successfully logged in</string>
+
     <string name="error_unknown">An unknown error occurred</string>
 </resources>

@@ -40,6 +40,7 @@ fun HomeScreen(viewModel: MainViewModel) {
                 .padding(10.dp)
                 .verticalScroll(scrollState)
         ) {
+//            Text(viewModel.emails)
             ScrollEffectPager()
             New_Trend(viewModel = viewModel)
             CategorySection()
@@ -69,7 +70,6 @@ fun CategorySection() {
                 Text(
                     text = "Xem tất cả",
                     color = MaterialTheme.colors.primary,
-
                 )
             }
         }

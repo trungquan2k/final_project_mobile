@@ -1,6 +1,7 @@
 package com.example.jetsellbook
 
 import android.os.Bundle
+import android.view.WindowManager
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
@@ -22,6 +23,7 @@ class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val viewModel: MainViewModel by viewModels()
+        window.setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_ADJUST_RESIZE);
         setContent {
             val systemUiController = rememberSystemUiController()
             val useDarkIcons = MaterialTheme.colors.isLight
@@ -33,6 +35,7 @@ class MainActivity : ComponentActivity() {
                     darkIcons = useDarkIcons
                 )
             }
+
             JetSellBookTheme() {
                 Surface(color = MaterialTheme.colors.background) {
                     JetBookWormApp(viewModel)

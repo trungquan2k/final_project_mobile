@@ -11,7 +11,7 @@ import androidx.compose.runtime.mutableStateOf
  */
 sealed class Screen {
     object HomePage : Screen()
-//    object LoginPage: Screen()
+    object ProfilePage: Screen()
     object CartPage:Screen()
     object SearchPage: Screen()
 }

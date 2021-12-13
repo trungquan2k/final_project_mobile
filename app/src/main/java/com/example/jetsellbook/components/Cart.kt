@@ -33,7 +33,7 @@ import com.example.jetsellbook.R
 fun ProductCart() {
     Card(
         shape = RoundedCornerShape(4.dp),
-        backgroundColor = Color(0xffFEF4E7)
+        backgroundColor = Color(0xffFDF5E6)
     ) {
         Column(modifier = Modifier.padding(8.dp)) {
             Row() {
@@ -49,31 +49,31 @@ fun ProductCart() {
                     text = "Mặt hàng đã chọn",
                     style = TextStyle(
                         color = Color.Gray,
-                        fontSize = 15.sp
+                        fontSize = 17.sp
                     ),
-                    modifier = Modifier.height(10.dp)
+                    modifier = Modifier.height(20.dp)
                 )
             }
-            Divider()
+            Spacer(modifier = Modifier.height(10.dp))
             Orders(
                 text = "Đời sống",
                 price = 100000,
                 image = painterResource(id = R.drawable.dich),
-                backgroundColor = Color(0xffFEF4E7)
+                backgroundColor = Color(0xffFDF5E6)
             )
             Divider()
             Orders(
                 text = "Tinh cảm",
                 price = 150000,
                 image = painterResource(id = R.drawable.tinh_cam),
-                backgroundColor = Color(0xffFEF4E7)
+                backgroundColor = Color(0xffFDF5E6)
             )
             Divider()
             Orders(
                 text = "Đắc nhân tâm",
                 price = 120000,
                 image = painterResource(id = R.drawable.dac_nhan_tam),
-                backgroundColor = Color(0xffFEF4E7)
+                backgroundColor = Color(0xffFDF5E6)
             )
             Divider()
             TotalPrice()
@@ -83,7 +83,9 @@ fun ProductCart() {
             RoundedButton(
                 text = "Check Our",
                 onClick = {
-                }, modifier = Modifier.align(Alignment.CenterHorizontally).padding(top = 10.dp)
+                }, modifier = Modifier
+                    .align(Alignment.CenterHorizontally)
+                    .padding(top = 10.dp)
             )
         }
     }
@@ -100,7 +102,7 @@ fun PreiviewTotalPrice(){
 @Composable
 fun TotalPrice() {
     Card(
-        backgroundColor = Color(0xffFEF4E7),
+        backgroundColor = Color(0xFFFFFFFF),
         modifier = Modifier.height(70.dp)
     ) {
         Box(
@@ -109,7 +111,7 @@ fun TotalPrice() {
         ) {
             RightComponent(modifier = Modifier
                 .align(Alignment.TopStart)
-                .padding(top = 10.dp,start = 20.dp, end = 10.dp))
+                .padding(top = 10.dp, start = 20.dp, end = 10.dp))
 
             LeftComponent(modifier = Modifier
                 .align(Alignment.TopEnd)
@@ -155,7 +157,7 @@ fun Price(){
     ){
         Row {
             TextComponent("Thành tiền (3 sản phẩm) ")
-            Spacer(modifier = Modifier.width(120.dp))
+            Spacer(modifier = Modifier.width(50.dp))
             TextComponent("370.000 đ")
         }
     }
@@ -168,7 +170,7 @@ fun TextComponent(title: String) {
         text = title,
         style = TextStyle(
             color = Color.Gray,
-            fontSize = 15.sp
+            fontSize = 16.sp
         ),
     )
 }

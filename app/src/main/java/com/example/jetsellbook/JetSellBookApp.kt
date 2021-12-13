@@ -8,6 +8,8 @@ import androidx.compose.animation.Crossfade
 import androidx.compose.animation.ExperimentalAnimationApi
 
 import androidx.compose.foundation.background
+import androidx.compose.foundation.layout.Box
+import androidx.compose.foundation.layout.padding
 
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
@@ -27,7 +29,7 @@ import com.example.jetsellbook.appdrawer.AppDrawer
 import com.example.jetsellbook.screen.CartScreen
 
 import com.example.jetsellbook.screen.HomeScreen
-//import com.example.jetsellbook.screen.LoginScreen
+import com.example.jetsellbook.screen.ProfileScreen
 import com.example.jetsellbook.screen.SearchScreen
 import com.example.jetsellbook.ui.theme.JetSellBookTheme
 
@@ -43,9 +45,9 @@ fun JetBookWormApp(viewModel: MainViewModel) {
             AppContent(viewModel)
         }
     }else{
-//        LoginScreen(viewModel)
         LoginScreen(viewModel)
     }
+
 }
 
 
@@ -53,6 +55,50 @@ fun JetBookWormApp(viewModel: MainViewModel) {
 @ExperimentalAnimationApi
 @Composable
 fun AppContent(viewModel: MainViewModel) {
+    val scaffoldState = rememberScaffoldState()
+    val coroutineScope = rememberCoroutineScope()
+    Crossfade(targetState = JetSellBookRouter.currentScreen) { screenState ->
+        Scaffold(
+            scaffoldState = scaffoldState,
+            topBar = {
+                MyTopAppBar(
+                    scaffoldState,
+                    coroutineScope,
+                )
+            },
+            drawerContent = {
+                AppDrawer(
+                    closeDrawerAction = {
+                        coroutineScope.launch {
+                            scaffoldState.drawerState.close()
+                        }
+                    }
+                )
+            },
+
+            bottomBar = {
+                BottomNavigationComponent(
+                    modifier = Modifier.background(Color.Black),
+                    screenState = screenState
+                )
+            }
+        ) { innerPadding ->
+            Box(modifier = Modifier.padding(innerPadding)) {
+                MainScreenContainer(
+                    screenState = screenState,
+                    viewModel = viewModel,
+                    modifier = Modifier.padding(end = 10.dp)
+                )
+            }
+        }
+    }
+}
+
+
+@ExperimentalMaterialApi
+@ExperimentalAnimationApi
+@Composable
+fun AppContent1(viewModel: MainViewModel) {
     val scaffoldState = rememberScaffoldState()
     val coroutineScope = rememberCoroutineScope()
     LaunchedEffect(Unit, block = {
@@ -82,6 +128,7 @@ fun AppContent(viewModel: MainViewModel) {
                 MainScreenContainer(
                     screenState = screenState,
                     viewModel = viewModel,
+                    modifier = Modifier.padding(end = 10.dp)
                 )
 
             },
@@ -91,7 +138,8 @@ fun AppContent(viewModel: MainViewModel) {
                     screenState = screenState
                 )
             },
-            backgroundColor = Color(0xFFEAE9EE),
+
+            backgroundColor = Color(0xFFFFFFFF),
             drawerShape = RoundedCornerShape(bottomEnd = 50.dp)
         )
     }
@@ -104,12 +152,13 @@ fun AppContent(viewModel: MainViewModel) {
 private fun MainScreenContainer(
     screenState: MutableState<Screen>,
     viewModel: MainViewModel,
+    modifier: Modifier
 ) {
     when (screenState.value) {
         is Screen.HomePage -> HomeScreen(viewModel)
         is Screen.CartPage -> CartScreen(viewModel)
         is Screen.SearchPage -> SearchScreen(viewModel)
-//        is Screen.LoginPage -> LoginScreen()
+        is Screen.ProfilePage -> ProfileScreen(viewModel)
         else -> {}
     }
 }
@@ -129,7 +178,7 @@ private fun BottomNavigationComponent(
             R.string.cart,
             Screen.CartPage
         ),
-        NavigationItem(3, R.drawable.ic_profile, R.string.profile, Screen.HomePage),
+        NavigationItem(3, R.drawable.ic_profile, R.string.profile, Screen.ProfilePage),
     )
     BottomNavigation(modifier = modifier, backgroundColor = (Color.LightGray)) {
         items.forEach {
@@ -145,8 +194,7 @@ private fun BottomNavigationComponent(
                     selectedItem = it.index
                     screenState.value = it.screen
                 },
-
-                )
+            )
         }
     }
 }

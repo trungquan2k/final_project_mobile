@@ -34,7 +34,9 @@ class MainViewModel : ViewModel() {
 
     private var _accountEntry = MutableLiveData(LoginState())
     val accountEntry: LiveData<LoginState> = _accountEntry
-    fun login(email: String, password: String) {
+    var emails by mutableStateOf("")
+
+    fun addlogin(email: String, password: String) {
         val errorMessage = if(email.isBlank() || password.isBlank()) {
             R.string.error_input_empty
         } else if(!Patterns.EMAIL_ADDRESS.matcher(email).matches()){
@@ -52,7 +54,7 @@ class MainViewModel : ViewModel() {
             state.value = state.value.copy(email = email, password = password)
             state.value = state.value.copy(displayProgressBar = false)
             state.value = state.value.copy(successLogin = true)
-//            _accountEntry.value=account
+            emails=state.value.email
             JetSellBookRouter.navigateTo(Screen.HomePage)
         }
     }

@@ -52,7 +52,7 @@ fun BoxComponentCart(
 ) {
     Card(
         shape = RoundedCornerShape(4.dp),
-        backgroundColor = Color(0xffFEF4E7)
+        backgroundColor = Color(0xffFDF5E6)
     ){
         Row(
             modifier= Modifier

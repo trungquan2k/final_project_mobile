@@ -1,8 +1,5 @@
 package com.example.jetsellbook.components
 
-import android.content.Context
-import android.widget.Toast
-
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.background
 
@@ -11,10 +8,8 @@ import androidx.compose.foundation.layout.*
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.*
 import androidx.compose.material.icons.Icons
-import androidx.compose.material.icons.filled.Add
 import androidx.compose.material.icons.filled.ShoppingCart
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.shadow
 import androidx.compose.ui.graphics.Color
@@ -36,7 +31,7 @@ fun BestSellerItemPreview() {
     BestSellerItem(
         "Hoang Trung Quan",
         123, 12,
-        painterResource(id = R.drawable.background)
+        painterResource(id = R.drawable.background_login)
     )
 }
 
@@ -103,7 +98,7 @@ fun BestSellerItem(
                     )
                 }
                 IconButton(
-                    onClick = { },
+                    onClick = { JetSellBookRouter.navigateTo(Screen.CartPage) },
                     modifier = Modifier
                         .background(
                             color = Color.DarkGray,
