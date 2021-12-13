@@ -1,60 +1,65 @@
 package com.example.jetsellbook
 
 
+import LoginScreen
 import MyTopAppBar
-import RoundedCornerShapes
 import Screen
 import androidx.compose.animation.Crossfade
 import androidx.compose.animation.ExperimentalAnimationApi
-import androidx.compose.foundation.ScrollState
-import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.*
-import androidx.compose.foundation.rememberScrollState
-import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.*
-import androidx.compose.material.icons.Icons
 
-import androidx.compose.material.icons.filled.PlayArrow
+import androidx.compose.foundation.background
+
+import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.*
+
 import androidx.compose.runtime.*
 import androidx.compose.ui.Modifier
 
 import androidx.compose.ui.graphics.Color
+
 import androidx.compose.ui.graphics.vector.ImageVector
+
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.res.vectorResource
 import androidx.compose.ui.unit.dp
 
 import com.example.jetsellbook.appdrawer.AppDrawer
-import com.example.jetsellbook.components.ShadowComponent
 import com.example.jetsellbook.screen.CartScreen
 
 import com.example.jetsellbook.screen.HomeScreen
+//import com.example.jetsellbook.screen.LoginScreen
 import com.example.jetsellbook.screen.SearchScreen
 import com.example.jetsellbook.ui.theme.JetSellBookTheme
+
 import com.example.jetsellbook.viewmodel.MainViewModel
 import kotlinx.coroutines.launch
 
+@ExperimentalMaterialApi
 @ExperimentalAnimationApi
 @Composable
 fun JetBookWormApp(viewModel: MainViewModel) {
-    JetSellBookTheme {
-        AppContent(viewModel)
+    if(viewModel.state.value.successLogin){
+        JetSellBookTheme {
+            AppContent(viewModel)
+        }
+    }else{
+//        LoginScreen(viewModel)
+        LoginScreen(viewModel)
     }
 }
 
 
+@ExperimentalMaterialApi
 @ExperimentalAnimationApi
 @Composable
 fun AppContent(viewModel: MainViewModel) {
     val scaffoldState = rememberScaffoldState()
     val coroutineScope = rememberCoroutineScope()
-    val scrollState = rememberScrollState()
-    val fabShape = RoundedCornerShape(50)
-
     LaunchedEffect(Unit, block = {
         viewModel.getBookList()
+
     })
+
     Crossfade(targetState = JetSellBookRouter.currentScreen) { screenState ->
         Scaffold(
             scaffoldState = scaffoldState,
@@ -73,29 +78,12 @@ fun AppContent(viewModel: MainViewModel) {
                     }
                 )
             },
-            isFloatingActionButtonDocked = true,
-            floatingActionButtonPosition = FabPosition.Center,
-            floatingActionButton = {
-                ExtendedFloatingActionButton(
-                    text = {
-                        Icon(
-                            imageVector = Icons.Default.PlayArrow,
-                            contentDescription = "Random Book"
-                        )
-                    },
-                    shape = fabShape,
-                    onClick = {
-
-                    }
-                )
-            },
             content = {
-                RoundedCornerShapes()
-                ShadowComponent()
                 MainScreenContainer(
                     screenState = screenState,
                     viewModel = viewModel,
                 )
+
             },
             bottomBar = {
                 BottomNavigationComponent(
@@ -103,13 +91,14 @@ fun AppContent(viewModel: MainViewModel) {
                     screenState = screenState
                 )
             },
-            backgroundColor = Color(0xFFFFFFFF),
+            backgroundColor = Color(0xFFEAE9EE),
             drawerShape = RoundedCornerShape(bottomEnd = 50.dp)
         )
     }
 }
 
 
+@ExperimentalMaterialApi
 @ExperimentalAnimationApi
 @Composable
 private fun MainScreenContainer(
@@ -120,6 +109,7 @@ private fun MainScreenContainer(
         is Screen.HomePage -> HomeScreen(viewModel)
         is Screen.CartPage -> CartScreen(viewModel)
         is Screen.SearchPage -> SearchScreen(viewModel)
+//        is Screen.LoginPage -> LoginScreen()
         else -> {}
     }
 }
@@ -132,16 +122,16 @@ private fun BottomNavigationComponent(
     var selectedItem by remember { mutableStateOf(0) }
     val items = listOf(
         NavigationItem(0, R.drawable.ic_baseline_home_24, R.string.home, Screen.HomePage),
+        NavigationItem(1, R.drawable.ic_search, R.string.search, Screen.SearchPage),
         NavigationItem(
-            1,
-            R.drawable.ic_baseline_format_list_bulleted_24,
-            R.string.menu,
+            2,
+            R.drawable.baseline_shopping_cart_24,
+            R.string.cart,
             Screen.CartPage
         ),
-        NavigationItem(2, R.drawable.ic_baseline_add_24, R.string.profile, Screen.SearchPage),
-        NavigationItem(3, R.drawable.ic_launcher_foreground, R.string.profile, Screen.LoginPage),
+        NavigationItem(3, R.drawable.ic_profile, R.string.profile, Screen.HomePage),
     )
-    BottomNavigation(modifier = modifier) {
+    BottomNavigation(modifier = modifier, backgroundColor = (Color.LightGray)) {
         items.forEach {
             BottomNavigationItem(
                 icon = {
@@ -155,10 +145,12 @@ private fun BottomNavigationComponent(
                     selectedItem = it.index
                     screenState.value = it.screen
                 },
-            )
+
+                )
         }
     }
 }
+
 
 private data class NavigationItem(
     val index: Int,

@@ -5,6 +5,7 @@
     <string name="profile">Profile</string>
     <string name="cart">Cart</string>
     <string name="loginpage">Login Page</string>
+    <string name="search">Search</string>
     <!--    Login-->
     <string name="error_input_empty">The fields must not be empty</string>
     <string name="error_not_a_valid_email">Please enter a valid E-Mail</string>

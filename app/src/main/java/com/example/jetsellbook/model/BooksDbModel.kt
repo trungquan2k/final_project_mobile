@@ -1,4 +1,6 @@
-package com.example.jetsellbook.data.database
+package com.example.jetsellbook.model
+
+import kotlin.random.Random
 
 
 const val BOOK_PRICE = 1
@@ -11,6 +13,7 @@ data class BooksDbModel(
     val author: String="",
     val isInWishList: Boolean? = null,
 )
+
 val DEFAULT_BOOKS = listOf(
     BooksDbModel(
         1,
@@ -53,3 +56,4 @@ val DEFAULT_BOOKS = listOf(
         false
     ),
 )
+var Book: BooksDbModel = DEFAULT_BOOKS[Random.nextInt(DEFAULT_BOOKS.size)]

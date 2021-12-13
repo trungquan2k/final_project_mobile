@@ -5,6 +5,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.viewModels
 import androidx.compose.animation.ExperimentalAnimationApi
+import androidx.compose.material.ExperimentalMaterialApi
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.runtime.SideEffect
@@ -16,6 +17,7 @@ import com.google.accompanist.systemuicontroller.rememberSystemUiController
 
 class MainActivity : ComponentActivity() {
 
+    @ExperimentalMaterialApi
     @ExperimentalAnimationApi
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -24,6 +26,7 @@ class MainActivity : ComponentActivity() {
             val systemUiController = rememberSystemUiController()
             val useDarkIcons = MaterialTheme.colors.isLight
             val systemBarColor = MaterialTheme.colors.surface
+
             SideEffect {
                 systemUiController.setSystemBarsColor(
                     color = systemBarColor,
@@ -32,13 +35,10 @@ class MainActivity : ComponentActivity() {
             }
             JetSellBookTheme() {
                 Surface(color = MaterialTheme.colors.background) {
-
-
+                    JetBookWormApp(viewModel)
                 }
-
-
             }
-            JetBookWormApp(viewModel)
+
         }
     }
 }

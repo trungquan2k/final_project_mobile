@@ -1,4 +1,4 @@
-package com.example.jetsellbook.data.database
+package com.example.jetsellbook.model
 
 
 data class Places(
@@ -10,34 +10,34 @@ data class Places(
 
 val places = listOf(
     Places(
-        "Tuvalu",
+        "Voucher 2021",
         ".",
         5f,
-        "https://i.pinimg.com/originals/f5/25/6f/f5256f22b9dea5d4eb80c41f91f87793.jpg"
+        "https://i1.wp.com/ditadi.net/wp-content/uploads/2020/03/m%C3%A3-qu%C3%A0-t%E1%BA%B7ng-shopee-l%C3%A0-g%C3%AC.jpg?resize=640%2C351&ssl=1"
     ),
     Places(
-        "Los Angles",
+        "Gif 100k",
         "",
         4.5f,
-        "https://tophinhanhdep.com/wp-content/uploads/2021/10/Vietnam-4K-Wallpapers.jpg"
+        "https://baobibigsun.com/wp-content/uploads/2021/01/voucher.png"
     ),
     Places(
         "China",
         "",
         4.5f,
-        "https://p4.wallpaperbetter.com/wallpaper/170/24/4/5c1cbe61b60be-wallpaper-preview.jpg"
+        "https://www.sony.com.vn/image/bc6d25fa6371c2899ce704a2bed7614c?fmt=png-alpha&wid=720"
     ),
     Places(
-        "Tokyo",
+        "99K",
         "",
         3.5f,
-        "https://tophinhanhdep.com/wp-content/uploads/2021/10/4K-UHD-Wallpapers.jpg"
+        "https://a.ipricegroup.com/media/Ed/Coupons/Fahasa.jpg"
     ),
     Places(
-        "Book tua",
+        "Tri ân",
         "",
         4.5f,
-        "https://www.setaswall.com/wp-content/uploads/2017/03/4K-Coffee-Book-Glasses-Wallpaper-3840x2160.jpg"
+        "https://img.kam.vn/images/414x0/49e037880c6e4d6cb32686e544d29119/image/fahasa-uu-dai-tri-an-20-11-giam-15-cung-voucher-giam-50.jpg"
     ),
     Places(
         "Books",

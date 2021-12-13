@@ -5,7 +5,6 @@ buildscript {
         hilt_version = '2.39.1'
         accompanist_version = '0.17.0'
         coroutines_version = '1.5.1'
-
     }
     repositories {
         google()

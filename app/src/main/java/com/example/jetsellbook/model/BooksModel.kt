@@ -1,14 +1,15 @@
 package com.example.jetsellbook.model
 
-import android.net.Uri
+
 
 data class BooksModel(
-    val id: String,
+    val id: Int,
     val book_name: String,
     val image: String,
-    val price: String,
+    val price: Int,
     val author:String,
-    val price_promotion:String,
+    val description: String,
+    val price_promotion:Int,
     val created_at: String,
     val updated_at: String,
 )

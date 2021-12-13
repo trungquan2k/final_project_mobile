@@ -69,7 +69,7 @@ dependencies {
     //navigation control
     implementation "androidx.navigation:navigation-compose:2.4.0-alpha08"
 
-
+    implementation 'de.charlex.compose:bottom-drawer-scaffold:1.0.0-rc01'
 
     // api
     implementation 'com.squareup.retrofit2:retrofit:2.9.0'
@@ -84,7 +84,7 @@ dependencies {
     implementation "androidx.hilt:hilt-lifecycle-viewmodel:1.0.0-alpha03"
 
     //navigation
-    def nav_compose_version = "1.0.0-alpha01"
+    def nav_compose_version = "2.4.0-alpha05"
     implementation "androidx.navigation:navigation-compose:$nav_compose_version"
 
 
@@ -104,4 +104,9 @@ dependencies {
     //refesh
     implementation "com.google.accompanist:accompanist-swiperefresh:<version>"
     implementation "com.google.accompanist:accompanist-swiperefresh:0.20.3"
+
+    // ViewModel
+    implementation "androidx.lifecycle:lifecycle-viewmodel-savedstate:2.3.1"
+    implementation "androidx.lifecycle:lifecycle-livedata-ktx:2.3.1"
+    implementation "androidx.lifecycle:lifecycle-viewmodel-compose:1.0.0-alpha07"
 }

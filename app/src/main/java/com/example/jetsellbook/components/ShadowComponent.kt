@@ -31,7 +31,7 @@ import androidx.compose.ui.unit.sp
 fun ShadowComponent() {
     Column(
         modifier = Modifier
-            // with a height of 250 dp
+            // with a height of 80 dp
             .height(80.dp)
             // and a padding of 16 dp
             .padding(top = 20.dp, start = 16.dp, end = 16.dp)

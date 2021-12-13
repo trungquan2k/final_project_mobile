@@ -26,12 +26,13 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
 
 
-@Preview(showBackground = true)
+
 @Composable
-fun TopAppBarPreviwe(){
-    val scaffoldState = rememberScaffoldState()
-    val coroutineScope = rememberCoroutineScope()
-    MyTopAppBar(scaffoldState = scaffoldState, scope =coroutineScope )
+fun TopAppBarPreviwe(scaffoldState: ScaffoldState,scope: CoroutineScope){
+//    val scaffoldState = rememberScaffoldState()
+//    val coroutineScope = rememberCoroutineScope()
+    MyTopAppBar(scaffoldState = scaffoldState, scope =scope )
+    RoundedCornerShapes()
 }
 
 

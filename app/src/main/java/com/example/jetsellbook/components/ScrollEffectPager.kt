@@ -26,7 +26,7 @@ import androidx.compose.ui.unit.dp
 
 import androidx.compose.ui.viewinterop.AndroidView
 import coil.load
-import com.example.jetsellbook.data.database.places
+
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.calculateCurrentOffsetForPage
@@ -35,6 +35,7 @@ import kotlinx.coroutines.delay
 import kotlinx.coroutines.yield
 import kotlin.math.absoluteValue
 import com.example.jetsellbook.R
+import com.example.jetsellbook.model.places
 import com.flaviofaria.kenburnsview.KenBurnsView
 
 @OptIn(ExperimentalPagerApi::class)
